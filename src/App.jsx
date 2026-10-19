@@ -1,7 +1,7 @@
-import "./App.css";
 import { useState } from "react";
 import TodoList from "./TodoList.jsx";
 import TodoForm from "./TodoForm.jsx";
+import "./App.css";
 
 const todos = [
   { id: 1, title: "Eat breakfast" },
@@ -11,6 +11,7 @@ const todos = [
 
 function App() {
   const [todoList, setTodoList] = useState(todos);
+
   return (
     <div>
       <h1>My Todo List</h1>
