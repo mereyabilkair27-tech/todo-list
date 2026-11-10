@@ -15,21 +15,34 @@ function App() {
 
     setTodoList((previous) => [newTodo, ...previous]);
   }
+
   function completeTodo(id) {
-    const updatedTodoList = todoList.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, isCompleted: true};
-      }
-      return todo;
-    });
-    setTodoList(updatedTodoList);
+    const updatedTodos = todoList.map((todo) => 
+      (todo.id === id)
+        ? { ...todo, isCompleted: true}
+        : todo
+    );
+
+    setTodoList(updatedTodos);
   }
+
+  function UpdateTodo(editedTodo) {
+    const updatedTodos = todoList.map((todo) =>
+      todo.id === editedTodo.id
+        ? { ...editedTodo }
+        : todo
+    );
+
+    setTodoList(updatedTodos);
+  }
+
   return (
     <div>
       <h1>My Todo List</h1>
       <TodoForm onAddTodo={addTodo} />
       <TodoList todoList={todoList} 
       onCompleteTodo={completeTodo}
+      onUpdateTodo={UpdateTodo}
       />
     </div>
   );
