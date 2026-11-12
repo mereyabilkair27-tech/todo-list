@@ -17,7 +17,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
     if (!isEditing) return;
     event.preventDefault();
     if (!isValidTodoTitle(workingTitle)) return;
-    onCompleteTodo({
+    onUpdateTodo({
       ...todo,
       title: workingTitle.trim(),
     });
