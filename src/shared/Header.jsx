@@ -6,7 +6,7 @@ function Header({ email, onSetEmail, onSetToken }) {
 
   return (
     <header>
-      <h2>Todo List App</h2>
+      <h1>Todo List App</h1>
 
       {email && (
         <div>
