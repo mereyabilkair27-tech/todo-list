@@ -1,36 +1,22 @@
 import { useState } from "react";
-import TodoList from "./TodoList.jsx";
-import TodoForm from "./TodoForm.jsx";
+import Header from "./shared/Header";
+import Logon from "./features/Logon";
+import TodosPage from "./features/Todos/TodosPage";
 import "./App.css";
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
-  
-  function addTodo(todoTitle) {
-    const newTodo = {
-      id: Date.now(),
-      title: todoTitle,
-      isCompleted: false,
-    };
+  const [email, setEmail] = useState("");
+  const [token, setToken] = useState("");
 
-    setTodoList((previous) => [newTodo, ...previous]);
-  }
-  function completeTodo(id) {
-    const updatedTodoList = todoList.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, isCompleted: true};
-      }
-      return todo;
-    });
-    setTodoList(updatedTodoList);
-  }
   return (
     <div>
-      <h1>My Todo List</h1>
-      <TodoForm onAddTodo={addTodo} />
-      <TodoList todoList={todoList} 
-      onCompleteTodo={completeTodo}
-      />
+      <Header email={email} onSetEmail={setEmail} onSetToken={setToken} />
+
+      {token ? (
+        <TodosPage token={token} />
+      ) : (
+        <Logon onSetEmail={setEmail} onSetToken={setToken} />
+      )}
     </div>
   );
 }
